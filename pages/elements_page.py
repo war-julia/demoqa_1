@@ -10,9 +10,3 @@ class ElementsPage(BasePage):
         super().__init__(driver, self.base_url)
 
 
-    def equal_url(self):
-        if self.get_url() == self.base_url:
-            return True
-
-        else:
-            return False
