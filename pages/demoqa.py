@@ -19,6 +19,10 @@ class DemoQa(BasePage):
         return True
 
     def click_on_the_icon(self):
+        self.find_element(locator="#app>div>div>div.home-body>div>div:nyh-child(1)").click()
+
+
+    def click_on_the_btn(self):
         self.find_element(locator='#app>header>a').click()
 
 
