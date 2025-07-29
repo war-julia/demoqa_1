@@ -32,3 +32,4 @@ class InventoryPage(BasePage):
         self.logout_link.click()
 
 
+
