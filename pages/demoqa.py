@@ -5,22 +5,21 @@ from components.components import WebElement
 
 
 class DemoQa(BasePage):
+    """DemoQA main page class"""
 
     def __init__(self, driver):
         self.base_url = 'https://demoqa.com/'
         super().__init__(driver, self.base_url)
 
-
-
-        self.icon = WebElement(driver, '#app>header>a')
-        self.btn_elements = WebElement(driver, "#app>div>div>div.home-body>div>div:nyh-child(1)")
-
+        # Page elements
+        self.icon = WebElement(driver, '.header__logo')
+        self.btn_elements = WebElement(driver, ".card:nth-child(1)")
 
     def exist_icon(self):
+        """Check if the icon exists on the page"""
         try:
             self.icon.find_element()
-
+            return True
         except NoSuchElementException:
             return False
-        return True
 

@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-import time
+
 class BasePage:
 
 
@@ -8,9 +8,7 @@ class BasePage:
         self.base_url = base_url
 
     def visit (self):
-
         return self.driver.get(self.base_url)
-
 
     def get_url(self):
         return self.driver.current_url()
