@@ -21,4 +21,16 @@ class WebElement:
         except (NoSuchElementException, TimeoutException):
             raise NoSuchElementException(f"Element with locator '{self.locator}' not found")
 
+    def send_keys(self, text):
+        """Send keys to the element"""
+        self.find_element().send_keys(text)
+
+    def clear(self):
+        """Clear the element"""
+        self.find_element().clear()
+
+    def get_text(self):
+        """Get text from the element"""
+        return self.find_element().text
+
 

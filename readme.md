@@ -1,6 +1,6 @@
-# DemoQA Test Automation Framework
+# Sauce Demo Test Automation Framework
 
-This project contains automated tests for the DemoQA website using Selenium WebDriver and Python.
+This project contains automated tests for the [Sauce Demo](https://www.saucedemo.com/) website using Selenium WebDriver and Python.
 
 ## Project Structure
 
@@ -10,11 +10,11 @@ demoqa/
 │   └── components.py          # WebElement wrapper class
 ├── pages/
 │   ├── base_page.py          # Base page object
-│   ├── demoqa.py             # DemoQA main page
-│   └── elements_page.py      # Elements page
+│   ├── demoqa.py             # Sauce Demo login page
+│   └── elements_page.py      # Inventory page
 ├── tests/
-│   ├── test_check_icon_demoqa.py
-│   └── test_go_to_page_elements.py
+│   ├── test_login_functionality.py
+│   └── test_inventory_functionality.py
 ├── conftest.py               # Pytest configuration
 ├── requirements.txt          # Python dependencies
 └── chromedriver.exe         # Chrome WebDriver
@@ -40,7 +40,7 @@ pytest
 
 Run specific test file:
 ```bash
-pytest tests/test_check_icon_demoqa.py
+pytest tests/test_login_functionality.py
 ```
 
 Run with verbose output:
@@ -50,13 +50,13 @@ pytest -v
 
 ## Test Cases
 
-### test_check_icon_demoqa.py
-- Tests that the DemoQA logo icon exists and is clickable
-- Verifies the icon click doesn't navigate away from the page
+### test_login_functionality.py
+- Tests login functionality with valid credentials
+- Tests login with invalid credentials and error message verification
 
-### test_go_to_page_elements.py
-- Tests navigation from main page to Elements page
-- Verifies proper URL changes after navigation
+### test_inventory_functionality.py
+- Tests adding items to cart functionality
+- Tests logout functionality and navigation back to login page
 
 ## Framework Features
 
@@ -79,14 +79,15 @@ pytest -v
 - Explicit wait implementation
 - Better error messages
 
-### DemoQa Page
-- Main page elements and interactions
-- Icon verification methods
-- Navigation to sub-pages
+### SauceDemo Page
+- Login page elements and interactions
+- User authentication methods
+- Error message handling
 
-### ElementsPage
-- Elements page specific functionality
-- Page-specific element locators
+### InventoryPage
+- Inventory page specific functionality
+- Shopping cart interactions
+- Logout functionality
 
 ## Browser Configuration
 

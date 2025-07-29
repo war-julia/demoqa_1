@@ -1,20 +1,41 @@
 import pytest
-from pages.demoqa import DemoQa
-from pages.elements_page import ElementsPage
+from selenium.webdriver.common.by import By
+from pages.demoqa import SauceDemo
+from pages.elements_page import InventoryPage
 
 
-def test_go_to_page_elements(browser):
-    """Test navigation to the Elements page"""
-    demo_qa_page = DemoQa(browser)
-    elements_page = ElementsPage(browser)
+def test_add_item_to_cart(browser):
+    """Test adding item to cart functionality"""
+    sauce_demo_page = SauceDemo(browser)
+    inventory_page = InventoryPage(browser)
+    
+    # Login first
+    sauce_demo_page.visit()
+    sauce_demo_page.login('standard_user', 'secret_sauce')
+    
+    # Verify we're on inventory page
+    assert 'inventory.html' in sauce_demo_page.get_url()
+    
+    # Add first item to cart
+    inventory_page.add_item_to_cart(0)
+    
+    # Verify item was added (button text should change to "Remove")
+    buttons = browser.find_elements(By.CSS_SELECTOR, '.btn_inventory')
+    assert buttons[0].text == "Remove"
 
-    # Visit the main page
-    demo_qa_page.visit()
-    assert demo_qa_page.equal_url()
 
-    # Click on Elements button to navigate
-    demo_qa_page.btn_elements.click()
-
-    # Verify we're on the Elements page
-    assert elements_page.equal_url()
+def test_logout_functionality(browser):
+    """Test logout functionality"""
+    sauce_demo_page = SauceDemo(browser)
+    inventory_page = InventoryPage(browser)
+    
+    # Login first
+    sauce_demo_page.visit()
+    sauce_demo_page.login('standard_user', 'secret_sauce')
+    
+    # Logout
+    inventory_page.logout()
+    
+    # Verify we're back to login page
+    assert sauce_demo_page.equal_url()
 
