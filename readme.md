@@ -74,6 +74,11 @@ pytest -v
 - Tests contact form functionality
 - Tests location and map information
 
+### test_check_text.py
+- Tests footer text presence and completeness
+- Tests footer text formatting and structure
+- Tests footer text consistency across pages
+
 ## Framework Features
 
 - **Page Object Model**: Organized page classes for better maintainability

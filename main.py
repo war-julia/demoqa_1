@@ -11,6 +11,7 @@ Usage:
     python main.py --test news       # Run news page tests only
     python main.py --test education  # Run education page tests only
     python main.py --test contacts   # Run contacts page tests only
+    python main.py --test footer     # Run footer text tests only
 """
 
 import sys
@@ -22,7 +23,10 @@ def run_tests(test_type=None):
     """Run the specified tests"""
     if test_type:
         print(f"Running {test_type} page tests...")
-        subprocess.run(["pytest", f"tests/test_{test_type}_page.py", "-v"])
+        if test_type == "footer":
+            subprocess.run(["pytest", f"tests/test_check_text.py", "-v"])
+        else:
+            subprocess.run(["pytest", f"tests/test_{test_type}_page.py", "-v"])
     else:
         print("Running all tests...")
         subprocess.run(["pytest", "tests/", "-v"])
@@ -35,7 +39,7 @@ def main():
     )
     parser.add_argument(
         "--test", 
-        choices=["main", "news", "education", "contacts"],
+        choices=["main", "news", "education", "contacts", "footer"],
         help="Specify which test suite to run"
     )
     
