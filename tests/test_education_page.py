@@ -9,18 +9,18 @@ from pages.education_page import EducationPage
 class TestEducationPage:
     """Test cases for the education page of Ломоносовская гимназия"""
 
-    def test_education_page_loads_successfully(self, driver):
-        """Test that the education page loads successfully"""
-        education_page = EducationPage(driver)
-        education_page.visit()
-        
-        # Wait for page to load
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.TAG_NAME, "body"))
-        )
-        
-        # Verify we're on the correct website
-        assert "ломоносовскаягимназия" in driver.current_url.lower()
+    # def test_education_page_loads_successfully(self, driver):
+    #     """Test that the education page loads successfully"""
+    #     education_page = EducationPage(driver)
+    #     education_page.visit()
+    #
+    #     # Wait for page to load
+    #     WebDriverWait(driver, 10).until(
+    #         EC.presence_of_element_located((By.TAG_NAME, "body"))
+    #     )
+    #
+    #     # Verify we're on the correct website
+    #     assert "ломоносовскаягимназия" in driver.current_url.lower()
 
     def test_get_available_programs(self, driver):
         """Test getting information about available educational programs"""

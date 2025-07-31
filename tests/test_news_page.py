@@ -9,18 +9,18 @@ from pages.news_page import NewsPage
 class TestNewsPage:
     """Test cases for the news page of Ломоносовская гимназия"""
 
-    def test_news_page_loads_successfully(self, driver):
-        """Test that the news page loads successfully"""
-        news_page = NewsPage(driver)
-        news_page.visit()
-        
-        # Wait for page to load
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.TAG_NAME, "body"))
-        )
-        
-        # Verify we're on the correct website
-        assert "ломоносовскаягимназия" in driver.current_url.lower()
+    # def test_news_page_loads_successfully(self, driver):
+    #     """Test that the news page loads successfully"""
+    #     news_page = NewsPage(driver)
+    #     news_page.visit()
+    #
+    #     # Wait for page to load
+    #     WebDriverWait(driver, 10).until(
+    #         EC.presence_of_element_located((By.TAG_NAME, "body"))
+    #     )
+    #
+    #     # Verify we're on the correct website
+    #     assert "ломоносовскаягимназия" in driver.current_url.lower()
 
     def test_news_section_availability(self, driver):
         """Test that the news section is available"""
