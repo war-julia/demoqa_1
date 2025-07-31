@@ -33,4 +33,11 @@ class WebElement:
         """Get text from the element"""
         return self.find_element().text
 
+    def is_displayed(self):
+        """Check if element is displayed"""
+        try:
+            return self.find_element().is_displayed()
+        except (NoSuchElementException, TimeoutException):
+            return False
+
 
