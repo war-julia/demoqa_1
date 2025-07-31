@@ -8,7 +8,7 @@ def test_login_with_valid_credentials(browser):
     sauce_demo_page.visit()
     
     # Login with standard user
-    sauce_demo_page.login('standard_user', 'secret_sauce')
+    sauce_demo_page.login('visual_user', 'secret_sauce')
     
     # Verify successful login by checking URL change
     assert 'inventory.html' in sauce_demo_page.get_url()

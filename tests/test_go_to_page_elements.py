@@ -31,7 +31,7 @@ def test_logout_functionality(browser):
     
     # Login first
     sauce_demo_page.visit()
-    sauce_demo_page.login('standard_user', 'secret_sauce')
+    sauce_demo_page.login('visual_user', 'secret_sauce')
     
     # Logout
     inventory_page.logout()
