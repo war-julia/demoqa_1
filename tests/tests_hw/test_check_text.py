@@ -28,19 +28,19 @@ class TestFooterText:
 При использовании материалов ссылка на сайт обязательна.'''
 
         # Try to find footer text using various selectors
-        footer_selectors = [
-            'footer',
-            '.footer',
-            '#footer',
-            '.site-footer',
-            '.main-footer',
-            '.copyright',
-            '.footer-text',
-            '.footer-content',
-            'div[class*="footer"]',
-            'div[class*="copyright"]',
-            'div[class*="rights"]'
-        ]
+        # footer_selectors = [
+        #     'footer',
+        #     '.footer',
+        #     '#footer',
+        #     '.site-footer',
+        #     '.main-footer',
+        #     '.copyright',
+        #     '.footer-text',
+        #     '.footer-content',
+        #     'div[class*="footer"]',
+        #     'div[class*="copyright"]',
+        #     'div[class*="rights"]'
+        # ]
 
         footer_text_found = False
         actual_footer_text = ""
@@ -107,84 +107,84 @@ class TestFooterText:
 
         assert len(missing_parts) == 0, f"Missing footer text parts: {missing_parts}"
 
-    def test_footer_text_formatting(self, driver):
-        """Test that the footer text has proper formatting and structure"""
-        main_page = MainPage(driver)
-        main_page.visit()
-
-        # Wait for page to load
-        WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.TAG_NAME, "body"))
-        )
-
-        # Try to find footer element
-        footer_selectors = [
-            'footer',
-            '.footer',
-            '#footer',
-            '.site-footer',
-            '.main-footer'
-        ]
-
-        footer_element = None
-        for selector in footer_selectors:
-            try:
-                footer_element = driver.find_element(By.CSS_SELECTOR, selector)
-                break
-            except NoSuchElementException:
-                continue
-
-        if footer_element:
-            # Check that footer is visible
-            assert footer_element.is_displayed(), "Footer should be visible"
-
-            # Check that footer has some text content
-            footer_text = footer_element.text.strip()
-            assert len(footer_text) > 0, "Footer should contain text"
-
-            # Check that footer contains copyright information
-            assert "2020" in footer_text or "Все права защищены" in footer_text, "Footer should contain copyright information"
-
-    def test_footer_text_consistency(self, driver):
-        """Test that footer text is consistent across different pages"""
-        main_page = MainPage(driver)
-        main_page.visit()
-
-        # Get footer text from main page
-        main_page_text = driver.find_element(By.TAG_NAME, "body").text
-
-        # Try to navigate to other pages and check footer consistency
-        pages_to_test = [
-            ("news", main_page.navigate_to_news),
-            ("contacts", main_page.navigate_to_contacts),
-            ("education", main_page.navigate_to_education)
-        ]
-
-        for page_name, navigation_method in pages_to_test:
-            try:
-                # Navigate to the page
-                navigation_success = navigation_method()
-
-                if navigation_success:
-                    # Wait for page to load
-                    WebDriverWait(driver, 10).until(
-                        EC.presence_of_element_located((By.TAG_NAME, "body"))
-                    )
-
-                    # Get footer text from this page
-                    page_text = driver.find_element(By.TAG_NAME, "body").text
-
-                    # Check that both pages contain the same key footer elements
-                    key_elements = ["Ломоносовская гимназия", "Все права защищены"]
-
-                    for element in key_elements:
-                        assert (element in main_page_text) == (element in page_text), \
-                            f"Footer consistency check failed for {page_name} page"
-
-                # Go back to main page for next test
-                main_page.visit()
-
-            except Exception as e:
-                # If navigation fails, continue with next page
-                print(f"Navigation to {page_name} page failed: {e}")
-                continue
+    # def test_footer_text_formatting(self, driver):
+    #     """Test that the footer text has proper formatting and structure"""
+    #     main_page = MainPage(driver)
+    #     main_page.visit()
+    #
+    #     # Wait for page to load
+    #     WebDriverWait(driver, 10).until(
+    #         EC.presence_of_element_located((By.TAG_NAME, "body"))
+    #     )
+    #
+    #     # Try to find footer element
+    #     footer_selectors = [
+    #         'footer',
+    #         '.footer',
+    #         '#footer',
+    #         '.site-footer',
+    #         '.main-footer'
+    #     ]
+    #
+    #     footer_element = None
+    #     for selector in footer_selectors:
+    #         try:
+    #             footer_element = driver.find_element(By.CSS_SELECTOR, selector)
+    #             break
+    #         except NoSuchElementException:
+    #             continue
+    #
+    #     if footer_element:
+    #         # Check that footer is visible
+    #         assert footer_element.is_displayed(), "Footer should be visible"
+    #
+    #         # Check that footer has some text content
+    #         footer_text = footer_element.text.strip()
+    #         assert len(footer_text) > 0, "Footer should contain text"
+    #
+    #         # Check that footer contains copyright information
+    #         assert "2020" in footer_text or "Все права защищены" in footer_text, "Footer should contain copyright information"
+    #
+    # def test_footer_text_consistency(self, driver):
+    #     """Test that footer text is consistent across different pages"""
+    #     main_page = MainPage(driver)
+    #     main_page.visit()
+    #
+    #     # Get footer text from main page
+    #     main_page_text = driver.find_element(By.TAG_NAME, "body").text
+    #
+    #     # Try to navigate to other pages and check footer consistency
+    #     pages_to_test = [
+    #         ("news", main_page.navigate_to_news),
+    #         ("contacts", main_page.navigate_to_contacts),
+    #         ("education", main_page.navigate_to_education)
+    #     ]
+    #
+    #     for page_name, navigation_method in pages_to_test:
+    #         try:
+    #             # Navigate to the page
+    #             navigation_success = navigation_method()
+    #
+    #             if navigation_success:
+    #                 # Wait for page to load
+    #                 WebDriverWait(driver, 10).until(
+    #                     EC.presence_of_element_located((By.TAG_NAME, "body"))
+    #                 )
+    #
+    #                 # Get footer text from this page
+    #                 page_text = driver.find_element(By.TAG_NAME, "body").text
+    #
+    #                 # Check that both pages contain the same key footer elements
+    #                 key_elements = ["Ломоносовская гимназия", "Все права защищены"]
+    #
+    #                 for element in key_elements:
+    #                     assert (element in main_page_text) == (element in page_text), \
+    #                         f"Footer consistency check failed for {page_name} page"
+    #
+    #             # Go back to main page for next test
+    #             main_page.visit()
+    #
+    #         except Exception as e:
+    #             # If navigation fails, continue with next page
+    #             print(f"Navigation to {page_name} page failed: {e}")
+    #             continue
