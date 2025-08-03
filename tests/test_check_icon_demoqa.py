@@ -1,4 +1,4 @@
-from pages.demoqa import DemoQa
+from pages.demoqa_page import DemoQa
 import time
 def test_check_icon(browser):
     demo_qa_page = DemoQa(browser)
