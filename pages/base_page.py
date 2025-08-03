@@ -1,20 +1,17 @@
-# from selenium.webdriver.common.by import By
-#
-#
-# class BasePage:
-#     """Base page class that contains common methods for all pages"""
-#
-#     def __init__(self, driver, base_url):
-#         self.driver = driver
-#         self.base_url = base_url
-#
-#     def visit(self):
-#         """Navigate to the base URL"""
-#         return self.driver.get(self.base_url)
-#
-#     def get_url(self):
-#         """Get current page URL"""
-#         return self.driver.current_url
+from selenium.webdriver.common.by import By
+
+
+class BasePage:
+    def __init__(self, driver):
+        self.driver = driver
+        self.base_url = 'https://demoga.com/'
+
+     def visit(self):
+        return self.driver.get(self.base_url)
+
+     def find_element(self, locator):
+
+         return self.driver.find_element(By.CSS_SELECTOR, locator)
 #
 #     def equal_url(self):
 #         """Check if current URL matches base URL"""
