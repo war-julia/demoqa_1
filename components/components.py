@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-
+import time
 class WebElement:
     def __init__(self, driver, locator=''):
         self.driver = driver
