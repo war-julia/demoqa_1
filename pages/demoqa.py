@@ -9,7 +9,7 @@ class DemoQa(BasePage):
         super().__init__(driver,self.base_url)
 
         self.icon = WebElement(driver, '#app > header> a')
-        self.btn_elements = WebElement(driver, '#аpp > div > div > div.home-body > div > div:nth-child(1)')
+        self.btn_elements = WebElement(driver, '#app > div > div > div.home-body > div > div:nth-child(1)')
 
     def exist(self):
         try:
