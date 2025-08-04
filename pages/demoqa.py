@@ -1,6 +1,6 @@
 from selenium.common.exceptions import NoSuchElementException
 from pages.base_page import BasePage
-from components import WebElement
+from components.components import WebElement
 
 class DemoQa(BasePage):
 
@@ -13,7 +13,7 @@ class DemoQa(BasePage):
 
     def exist(self):
         try:
-            self.find_element()
+            self.icon.find_element()
         except NoSuchElementException:
             return False
         return True

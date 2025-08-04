@@ -14,11 +14,10 @@ class BasePage:
      #     return self.driver.find_element(By.CSS_SELECTOR, locator)
 
     def get_url(self):
-
-         return self.driver.current_url()
+        return self.driver.current_url
 
     def equal_url(self):
-         if self.get_url == self.base_url:
+         if self.get_url() == self.base_url:
              return True
          else:
              return False
