@@ -6,5 +6,5 @@ def test_check_icon(browser):
     demo_qa_page.icon.click()
     time.sleep(3)
     assert demo_qa_page.equal_url()
-    assert demo_qa_page.exist_icon()
+    assert demo_qa_page.icon.exist()
 
