@@ -13,7 +13,7 @@ class DemoQa(BasePage):
 
     def exist_icon(self):
         try:
-            self.find_element (locator='#app > header> a')
+            self.icon.find_element ()
         except NoSuchElementException:
             return False
         return True

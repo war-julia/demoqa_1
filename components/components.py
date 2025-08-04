@@ -6,4 +6,8 @@ class WebElement:
         self.locator = locator
 
     def click(self):
-        self.driver.find_element(By.CSS_SELECTOR, self.locator).click()
+        self.driver.find_element().click()
+
+    def find_element(self):
+        time.sleep(3)
+        return self.driver.find_element(By.CSS_SELECTOR, self.locator)
