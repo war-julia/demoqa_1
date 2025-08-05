@@ -27,3 +27,12 @@ class WebElement:
             return True
         except (NoSuchElementException, TimeoutException):
             return False
+
+
+    def get_text(self):
+        try:
+            self.find_element()
+            return True
+        except (NoSuchElementException, TimeoutException):
+            return False
+
