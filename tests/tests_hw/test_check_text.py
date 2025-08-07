@@ -16,7 +16,6 @@ def test_check_copyright_text(browser):
     assert demo_qa_page.equal_url()
     # поиск footer
     footer = browser.find_element(By.CSS_SELECTOR, "footer")
-    # str(self.find_element().text)
     # проверка copyright text
     copyright_text = "© 2013-2020 TOOLSQA.COM | ALL RIGHTS RESERVED."
 
