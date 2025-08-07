@@ -12,16 +12,13 @@ class WebElement:
         self.wait = WebDriverWait(driver, timeout)
 
     def click(self):
-        """Click on the element with explicit wait"""
         element = self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, self.locator)))
         element.click()
 
     def find_element(self):
-        """Find element with explicit wait"""
         return self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, self.locator)))
     
     def exist(self):
-        """Check if element exists on the page"""
         try:
             self.find_element()
             return True
