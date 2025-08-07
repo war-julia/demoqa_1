@@ -31,7 +31,7 @@ class WebElement:
 
     def get_text(self):
         try:
-            self.find_element()
+            str(self.find_element().text)
             return True
         except (NoSuchElementException, TimeoutException):
             return False
