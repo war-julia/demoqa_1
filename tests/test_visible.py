@@ -9,3 +9,5 @@ def test_visible_btn_sidebar(browser):
     time.sleep(3)
     assert elements_page.btn_sidebar_first_textbox.exist()
 
+
+
