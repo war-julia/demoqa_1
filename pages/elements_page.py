@@ -9,7 +9,9 @@ class ElementsPage(BasePage):
         super().__init__(driver,self.base_url)
 
         self.text_please = WebElement(driver, ".col-12.mt-4.col-md-6")
-        self.text_elements = WebElement(driver, "div.col-12:nth-child(2)")
+        self.icon = WebElement(driver, "header > a > img")
+        self.btn_sidebar_first = WebElement(driver, "div:nth-child(1) > span > div")
+        self.btn_sidebar_first_textbox = WebElement(diver, "div:nth-child(1) > div > ul >#item-0 > span")
 
 
 
