@@ -19,7 +19,7 @@ class WebElement:
         try:
             self.find_element()
             return True
-        except NoSuchElementException, TimeoutException:
+        except (NoSuchElementException, TimeoutException):
             return False
         return True
 
