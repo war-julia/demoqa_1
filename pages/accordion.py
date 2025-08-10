@@ -8,10 +8,9 @@ class Accordion(BasePage):
         self.base_url= 'https://demoqa.com/accordian'
         super().__init__(driver,self.base_url)
 
-        self.btn_sidebar_second_testbox = WebElement(driver, "#section1Content > p")
-        self.btn_accordion = WebElement(driver, "#section1Heading")
-
-        self.btn_accordion_content21 = WebElement(driver, "#section2Content > p:nth-child(1)")
-        self.btn_accordion_content22 = WebElement(driver, "#section2Content > p:nth-child(2)")
-        self.btn_accordion_content3 = WebElement(driver, "#section3Content > p")
+        self.section1_content = WebElement(driver, "#section1Content > p")
+        self.section1_heading = WebElement(driver, "#section1Heading")
+        self.section2_content_p1 = WebElement(driver, "#section2Content > p:nth-child(1)")
+        self.section2_content_p2 = WebElement(driver, "#section2Content > p:nth-child(2)")
+        self.section3_content = WebElement(driver, "#section3Content > p")
 
