@@ -1,8 +1,5 @@
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import time
 
 class WebElement:
     def __init__(self, driver, locator=''):
@@ -14,6 +11,9 @@ class WebElement:
 
     def find_element(self):
         return self.driver.find_element(By.CSS_SELECTOR, self.locator)
+
+    def find_elements(self):
+        return self.driver.find_elements(By.CSS_SELECTOR, self.locator)
     
     def exist(self):
         try:
