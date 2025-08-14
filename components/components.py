@@ -14,6 +14,11 @@ class WebElement:
 
     def find_elements(self):
         return self.driver.find_elements(By.CSS_SELECTOR, self.locator)
+
+
+
+
+
     
     def exist(self):
         try:
@@ -30,3 +35,6 @@ class WebElement:
     def visible(self):
         return self.find_element().is_displayed()
 
+    def check_count_elements(self, count: int): -> bool:
+        if len(self.find_elements()) == count:
+            return True
