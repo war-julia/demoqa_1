@@ -26,9 +26,9 @@ def browser():
 
     
     # Execute script to remove webdriver property
-    driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+    # driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
     
     yield driver
-    driver.set_window_size(1000, 1000)
+    browser.set_window_size(1000, 1000)
 
     driver.quit()
