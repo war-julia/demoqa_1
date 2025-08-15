@@ -16,3 +16,4 @@ class FormPages(BasePage):
         self.user_number = WebElement(driver, "userNumber")
         self.btn_submit = WebElement(driver, "submit")
         self.modal_dialog = WebElement(driver, "body > div.fade.modal.show > div")
+        self.btn_close_modal = WebElement(driver, "#closeLargeModal")
