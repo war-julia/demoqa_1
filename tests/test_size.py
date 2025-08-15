@@ -26,3 +26,4 @@ def test_size(browser):
     
     # Verify that the page is still accessible after size changes
     assert demo_qa_page.icon.exist(), "Page icon should be visible after size changes"
+    browser.set_window_size(1000, 1000)
