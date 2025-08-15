@@ -9,18 +9,17 @@ class BasePage:
     def visit(self):
         return self.driver.get(self.base_url)
 
-    # def find_element(self.locator):
-    #     return self.driver.find_element(By.CSS_SELECTOR, locator)
-
+    def find_element(self, locator):
+        return self.driver.find_element(By.CSS_SELECTOR, locator)
 
     def get_url(self):
         return self.driver.current_url
 
     def equal_url(self):
-         if self.get_url() == self.base_url:
-             return True
-         else:
-             return False
+        if self.get_url() == self.base_url:
+            return True
+        else:
+            return False
 
     def back(self):
         self.driver.back()
@@ -32,4 +31,4 @@ class BasePage:
         self.driver.refresh()
 
     def get_title(self):
-        self.driver.title
+        return self.driver.title
