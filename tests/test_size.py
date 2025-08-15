@@ -2,11 +2,7 @@ from pages.demoqa import DemoQa
 
 def test_size(browser):
     demo_qa_page = DemoQa(browser)
-
     demo_qa_page.visit()
-    
-    # Get initial window size
-    initial_size = browser.get_window_size()
     
     # Change window size to 1000x300
     browser.set_window_size(1000, 300)
@@ -26,4 +22,3 @@ def test_size(browser):
     
     # Verify that the page is still accessible after size changes
     assert demo_qa_page.icon.exist(), "Page icon should be visible after size changes"
-    browser.set_window_size(1000, 1000)
