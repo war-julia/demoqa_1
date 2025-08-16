@@ -1,7 +1,6 @@
 from pages.modal_dialogs import ModalDialogs
 from pages.demoqa import DemoQa
 
-
 def test_modal_elements(browser):
     modal_dialogs_page = ModalDialogs(browser)
     modal_dialogs_page.visit()
