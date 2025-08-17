@@ -17,3 +17,14 @@ def test_login_form(browser):
 
     assert form_page.modal_dialog.exist()
     form_page.btn_close_modal.click_force()
+
+def test_login_form_state_city(browser):
+    form_page = FormPages(browser)
+    form_page.visit()
+    form_page.state.click()
+    form_page.state_option.click()
+    form_page.city.click()
+    form_page.city_option.click()
+    
+    assert form_page.state.get_text() != ""
+    assert form_page.city.get_text() != ""
