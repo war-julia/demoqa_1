@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.webdriver.common.keys import
 
 class WebElement:
     def __init__(self, driver, locator=''):
@@ -8,6 +9,9 @@ class WebElement:
 
     def click(self):
         self.find_element().click()
+
+    def click_force(self):
+        self.driver.execute_script("arguments[0].click();", self.find_element())
 
     def find_element(self):
         return self.driver.find_element(By.CSS_SELECTOR, self.locator)
@@ -36,3 +40,7 @@ class WebElement:
 
     def send_keys(self, text: str):
         self.find_element().send_keys(text)
+
+    def clear(self):
+        self.send_keys(Keys.CONTROL + "a")
+        self.send_keys(Keys.DELETE)
