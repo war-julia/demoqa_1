@@ -8,4 +8,4 @@ class TextBox(BasePage):
         self.base_url = 'https://demoqa.com/text-box'
         super().__init__(driver, self.base_url)
 
-       self.name = WebElement(driver, "#userName")
+        self.name = WebElement(driver, "#userName")

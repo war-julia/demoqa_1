@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
-from selenium.webdriver.common.keys import
+from selenium.webdriver.common.keys import Keys
 
 class WebElement:
     def __init__(self, driver, locator='', locator_type="css"):
@@ -18,7 +18,7 @@ class WebElement:
         return self.driver.find_element(self.get_by_type(), self.locator)
 
     def find_elements(self):
-        return self.driver.find_elements(self.get_by_type(, self.locator)
+        return self.driver.find_elements(self.get_by_type(), self.locator)
 
     def exist(self):
         try:
@@ -57,8 +57,7 @@ class WebElement:
 
     def scroll_to_element(self):
         self.driver.execute_script(
-           "window.scrollTo(0, document.body.scrollHeight);"
-            self.find_element()
+            "arguments[0].scrollIntoView(true);", self.find_element()
         )
 
     def get_by_type(self):

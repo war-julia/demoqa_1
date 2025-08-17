@@ -10,5 +10,4 @@
 #     demo_qa_page.btn_elements.click()
 #     assert elements_page.equal_url()
 #
-
-
+#
