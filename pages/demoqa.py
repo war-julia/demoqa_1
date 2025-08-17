@@ -18,4 +18,3 @@ class DemoQa(BasePage):
         except NoSuchElementException:
             return False
         return True
-
