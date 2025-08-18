@@ -26,7 +26,6 @@ class WebElement:
             return True
         except (NoSuchElementException, TimeoutException):
             return False
-        return True
 
     def get_text(self):
         return str(self.find_element().text)
@@ -48,12 +47,7 @@ class WebElement:
 
     def get_dom_attribute(self, name: str):
         value = self.find_element().get_dom_attribute(name)
-
-        if value is None:
-            return False
-        if len(value) > 0:
-            return value
-        return True
+        return value
 
     def scroll_to_element(self):
         self.driver.execute_script(

@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """
-Example usage of the Ломоносовская Гимназия Test Automation Framework
+Example usage of the DemoQA Test Automation Framework
 
-This script demonstrates how to use the framework to test the school's website.
+This script demonstrates how to use the framework to test the DemoQA website.
 """
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from pages.main_page import MainPage
-from pages.news_page import NewsPage
-from pages.education_page import EducationPage
-from pages.contacts_page import ContactsPage
+from pages.demoqa import DemoQa
+from pages.elements_page import ElementsPage
+from pages.text_box import TextBox
+from pages.form_page import FormPages
+from pages.accordion import Accordion
 
 
 def setup_driver():
@@ -39,108 +40,94 @@ def setup_driver():
 
 
 def test_main_page_example():
-    """Example of testing the main page"""
-    print("Testing main page...")
+    """Example of testing the main DemoQA page"""
+    print("Testing DemoQA main page...")
     driver = setup_driver()
     
     try:
-        main_page = MainPage(driver)
-        main_page.visit()
+        demo_qa_page = DemoQa(driver)
+        demo_qa_page.visit()
         
-        # Get school name
-        school_name = main_page.get_school_name()
-        print(f"School name: {school_name}")
+        # Check if page loaded correctly
+        assert demo_qa_page.equal_url()
+        print(f"Page URL: {demo_qa_page.get_url()}")
+        print(f"Page title: {demo_qa_page.get_title()}")
         
-        # Get about information
-        about_info = main_page.get_about_info()
-        print(f"About info length: {len(about_info)} characters")
-        
-        # Test navigation
-        news_success = main_page.navigate_to_news()
-        print(f"Navigation to news: {'Success' if news_success else 'Not available'}")
-        
-        contacts_success = main_page.navigate_to_contacts()
-        print(f"Navigation to contacts: {'Success' if contacts_success else 'Not available'}")
-        
-        education_success = main_page.navigate_to_education()
-        print(f"Navigation to education: {'Success' if education_success else 'Not available'}")
+        # Check if elements button exists
+        if demo_qa_page.btn_elements.exist():
+            print("Elements button found")
+            demo_qa_page.btn_elements.click()
+        else:
+            print("Elements button not found")
         
     finally:
         driver.quit()
 
 
-def test_news_page_example():
-    """Example of testing the news page"""
-    print("\nTesting news page...")
+def test_elements_page_example():
+    """Example of testing the elements page"""
+    print("\nTesting elements page...")
     driver = setup_driver()
     
     try:
-        news_page = NewsPage(driver)
-        news_page.visit()
+        elements_page = ElementsPage(driver)
+        elements_page.visit()
         
-        # Check news availability
-        news_available = news_page.check_news_availability()
-        print(f"News section available: {news_available}")
+        # Check if page loaded correctly
+        assert elements_page.equal_url()
+        print(f"Elements page URL: {elements_page.get_url()}")
         
-        # Get news count
-        news_count = news_page.get_news_count()
-        print(f"Number of news items: {news_count}")
-        
-        # Get latest news title
-        latest_title = news_page.get_latest_news_title()
-        print(f"Latest news title: {latest_title}")
+        # Check if sidebar elements exist
+        if elements_page.btn_sidebar_first.exist():
+            print("Sidebar first button found")
+        if elements_page.btn_sidebar_first_textbox.exist():
+            print("Textbox button found")
         
     finally:
         driver.quit()
 
 
-def test_education_page_example():
-    """Example of testing the education page"""
-    print("\nTesting education page...")
+def test_text_box_example():
+    """Example of testing the text box page"""
+    print("\nTesting text box page...")
     driver = setup_driver()
     
     try:
-        education_page = EducationPage(driver)
-        education_page.visit()
+        text_box_page = TextBox(driver)
+        text_box_page.visit()
         
-        # Get available programs
-        programs_info = education_page.get_available_programs()
-        print(f"Programs info length: {len(programs_info)} characters")
+        # Fill in the form
+        text_box_page.name.send_keys("John Doe")
+        text_box_page.current_address.send_keys("123 Test Street")
+        text_box_page.btn_submit.click()
         
-        # Check program availability
-        humanities_available = education_page.check_program_availability("гуманитарный")
-        print(f"Humanities profile available: {humanities_available}")
-        
-        # Get enrollment information
-        enrollment_info = education_page.get_enrollment_information()
-        print(f"Enrollment info length: {len(enrollment_info)} characters")
+        # Check output
+        name_output = text_box_page.name_output.get_text()
+        address_output = text_box_page.current_address_output.get_text()
+        print(f"Name output: {name_output}")
+        print(f"Address output: {address_output}")
         
     finally:
         driver.quit()
 
 
-def test_contacts_page_example():
-    """Example of testing the contacts page"""
-    print("\nTesting contacts page...")
+def test_form_page_example():
+    """Example of testing the form page"""
+    print("\nTesting form page...")
     driver = setup_driver()
     
     try:
-        contacts_page = ContactsPage(driver)
-        contacts_page.visit()
+        form_page = FormPages(driver)
+        form_page.visit()
         
-        # Get contact details
-        contact_details = contacts_page.get_full_contact_details()
-        print("Contact details:")
-        for key, value in contact_details.items():
-            print(f"  {key}: {value}")
+        # Check placeholders
+        first_name_placeholder = form_page.first_name.get_dom_attribute("placeholder")
+        last_name_placeholder = form_page.last_name.get_dom_attribute("placeholder")
+        email_placeholder = form_page.user_email.get_dom_attribute("placeholder")
         
-        # Check map availability
-        map_available = contacts_page.check_map_availability()
-        print(f"Map available: {map_available}")
-        
-        # Check contact form availability
-        form_available = contacts_page.check_contact_form_availability()
-        print(f"Contact form available: {form_available}")
+        print(f"First name placeholder: {first_name_placeholder}")
+        print(f"Last name placeholder: {last_name_placeholder}")
+        print(f"Email placeholder: {email_placeholder}")
         
     finally:
         driver.quit()
@@ -148,25 +135,16 @@ def test_contacts_page_example():
 
 def main():
     """Main function to run all examples"""
-    print("=" * 60)
-    print("Ломоносовская Гимназия Test Automation Framework - Examples")
-    print("=" * 60)
-    print("Website: https://ломоносовскаягимназия.рф/")
-    print("=" * 60)
+    print("DemoQA Test Automation Framework - Examples")
+    print("=" * 50)
     
-    try:
-        test_main_page_example()
-        test_news_page_example()
-        test_education_page_example()
-        test_contacts_page_example()
-        
-        print("\n" + "=" * 60)
-        print("All examples completed successfully!")
-        print("=" * 60)
-        
-    except Exception as e:
-        print(f"\nError during testing: {e}")
-        print("This is expected if the website structure doesn't match our selectors.")
+    test_main_page_example()
+    test_elements_page_example()
+    test_text_box_example()
+    test_form_page_example()
+    
+    print("\n" + "=" * 50)
+    print("All examples completed!")
 
 
 if __name__ == '__main__':
