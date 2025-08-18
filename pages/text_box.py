@@ -12,4 +12,4 @@ class TextBox(BasePage):
         self.current_address = WebElement(driver, "#currentAddress")
         self.btn_submit = WebElement(driver, "#submit")
         self.name_output = WebElement(driver, "#name")
-        self.current_address_output = WebElement(driver, "#currentAddress")
+        self.current_address_output = WebElement(driver, "p#currentAddress")

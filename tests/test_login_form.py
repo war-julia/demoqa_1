@@ -3,7 +3,6 @@ from pages.form_page import FormPages
 
 def test_login_form(browser):
     form_page = FormPages(browser)
-
     form_page.visit()
     assert not form_page.modal_dialog.exist()
     form_page.first_name.send_keys("tester")
@@ -14,7 +13,6 @@ def test_login_form(browser):
     form_page.hobbies.click_force()
     form_page.current_address.send_keys("karelia")
     form_page.btn_submit.click_force()
-
     assert form_page.modal_dialog.exist()
     form_page.btn_close_modal.click_force()
 
