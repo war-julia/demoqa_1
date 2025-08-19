@@ -1,6 +1,9 @@
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
 
 class WebElement:
     def __init__(self, driver, locator='', locator_type="css"):
@@ -13,6 +16,16 @@ class WebElement:
 
     def click_force(self):
         self.driver.execute_script("arguments[0].click();", self.find_element())
+
+    def click_with_scroll(self):
+        element = self.find_element()
+        self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+        time.sleep(0.5)
+        try:
+            element.click()
+        except:
+            # Если обычный клик не работает, используем JavaScript
+            self.driver.execute_script("arguments[0].click();", element)
 
     def find_element(self):
         return self.driver.find_element(self.get_by_type(), self.locator)

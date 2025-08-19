@@ -1,5 +1,5 @@
 from pages.form_page import FormPages
-
+import time
 
 def test_login_form(browser):
     form_page = FormPages(browser)
@@ -19,10 +19,13 @@ def test_login_form(browser):
 def test_login_form_state_city(browser):
     form_page = FormPages(browser)
     form_page.visit()
-    form_page.state.click()
-    form_page.state_option.click()
-    form_page.city.click()
-    form_page.city_option.click()
+    time.sleep(2)
+    form_page.state.click_with_scroll()
+    time.sleep(1)
+    form_page.state_option.click_force()
+    form_page.city.click_with_scroll()
+    time.sleep(1)
+    form_page.city_option.click_force()
 
     assert form_page.state.get_text() != ""
     assert form_page.city.get_text() != ""

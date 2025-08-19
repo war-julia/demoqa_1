@@ -21,3 +21,5 @@ class FormPages(BasePage):
         self.state_option = WebElement(driver, "#react-select-3-option-0")
         self.city = WebElement(driver, "#city")
         self.city_option = WebElement(driver, "#react-select-4-option-0")
+        self.state_container = WebElement(driver, "#state .css-2b097c-container")
+        self.city_container = WebElement(driver, "#city .css-2b097c-container")
