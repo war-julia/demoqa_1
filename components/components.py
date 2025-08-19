@@ -27,6 +27,16 @@ class WebElement:
             # Если обычный клик не работает, используем JavaScript
             self.driver.execute_script("arguments[0].click();", element)
 
+    def wait_for_element(self, timeout=10):
+        """Ожидание появления элемента на странице"""
+        try:
+            WebDriverWait(self.driver, timeout).until(
+                EC.presence_of_element_located((self.get_by_type(), self.locator))
+            )
+            return True
+        except TimeoutException:
+            return False
+
     def find_element(self):
         return self.driver.find_element(self.get_by_type(), self.locator)
 
@@ -60,6 +70,11 @@ class WebElement:
 
     def get_dom_attribute(self, name: str):
         value = self.find_element().get_dom_attribute(name)
+        return value
+
+    def get_attribute(self, name: str):
+        """Получение обычного HTML атрибута"""
+        value = self.find_element().get_attribute(name)
         return value
 
     def scroll_to_element(self):
