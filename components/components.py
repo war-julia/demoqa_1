@@ -71,6 +71,9 @@ class WebElement:
     def get_dom_attribute(self, name: str):
         value = self.find_element().get_dom_attribute(name)
         return value
+    
+    def check_css(self, style, value=''):
+        return self.find_element().value_of_css_property(style) == value
 
     def get_attribute(self, name: str):
         """Получение обычного HTML атрибута"""
