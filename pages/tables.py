@@ -45,8 +45,13 @@ class Tables(BasePage):
     
     def get_row_count(self):
         """Возвращает количество строк в таблице"""
-        rows = self.table_rows.find_elements()
-        return len([row for row in rows if row.text.strip()])
+        try:
+            rows = self.table_rows.find_elements()
+            # Фильтруем только строки с данными (исключаем пустые)
+            valid_rows = [row for row in rows if row.text.strip()]
+            return len(valid_rows)
+        except:
+            return 0
     
     def add_new_record(self, first_name, last_name, email, age, salary, department):
         """Добавляет новую запись в таблицу"""
