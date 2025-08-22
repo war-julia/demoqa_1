@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-
+import logging
 class BasePage:
     def __init__(self, driver, base_url):
         self.driver = driver
@@ -31,3 +31,10 @@ class BasePage:
 
     def get_title(self):
         return self.driver.title
+
+    def alert(self):
+        try:
+            return self.driver.switch_to.alert
+        except Exception as ex:
+            logging.log(1, ex)
+        False
