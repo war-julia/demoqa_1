@@ -1,0 +1,60 @@
+import time
+from pages.tables import Tables
+
+
+def test_webtables_functionality(browser):
+    page_tables = Tables(browser)
+    page_tables.visit()
+
+    assert page_tables.page_title.visible()
+    assert "Web Tables" in page_tables.page_title.get_text()
+    while page_tables.btn_delete_row.exist():
+        page_tables.btn_delete_row.click()
+        time.sleep(1)
+    assert page_tables.no_data_exist()
+    page_tables.add_button.click()
+    time.sleep(1)
+    page_tables.submit_button.click()
+    time.sleep(1)
+    assert page_tables.first_name_input.visible()
+    assert page_tables.submit_button.visible()
+    page_tables.page_title.click()
+    time.sleep(1)
+    page_tables.add_button.click()
+    time.sleep(1)
+
+    test_data = {
+        'first_name': 'July',
+        'last_name': 'War',
+        'email': 'war-july@example.com',
+        'age': '30',
+        'salary': '50000',
+        'department': 'IT'
+    }
+
+    page_tables.first_name_input.send_keys(test_data['first_name'])
+    page_tables.last_name_input.send_keys(test_data['last_name'])
+    page_tables.email_input.send_keys(test_data['email'])
+    page_tables.age_input.send_keys(test_data['age'])
+    page_tables.salary_input.send_keys(test_data['salary'])
+    page_tables.department_input.send_keys(test_data['department'])
+
+    page_tables.submit_button.click()
+    time.sleep(1)
+    assert not page_tables.first_name_input.visible()
+    assert not page_tables.no_data_exist()
+    page_tables.btn_edit_row.click()
+    time.sleep(2)
+    assert page_tables.first_name_input.visible()
+    assert page_tables.first_name_input.get_attribute('value') == test_data['first_name']
+    assert page_tables.last_name_input.get_attribute('value') == test_data['last_name']
+    assert page_tables.email_input.get_attribute('value') == test_data['email']
+
+    page_tables.first_name_input.clear()
+    page_tables.first_name_input.send_keys('Jane')
+    page_tables.submit_button.click()
+    time.sleep(1)
+    assert not page_tables.first_name_input.visible()
+    page_tables.btn_delete_row.click()
+    time.sleep(2)
+    assert page_tables.no_data_exist()
