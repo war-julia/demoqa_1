@@ -33,8 +33,8 @@ class Tables(BasePage):
         # Сообщения и статусы
         self.no_data_message = WebElement(driver, ".rt-noData")
         
-        # Заголовок страницы
-        self.page_title = WebElement(driver, ".main-header")
+        # Заголовок страницы - исправленный селектор
+        self.page_title = WebElement(driver, "h1")
         
         # Навигация
         self.back_to_elements = WebElement(driver, ".btn.btn-light")

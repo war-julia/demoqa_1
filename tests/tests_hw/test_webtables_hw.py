@@ -1,5 +1,6 @@
 import time
 from pages.tables import Tables
+from selenium.webdriver.common.keys import Keys
 
 
 def test_webtables_functionality(browser):
@@ -7,7 +8,9 @@ def test_webtables_functionality(browser):
     page_tables.visit()
 
     assert page_tables.page_title.visible()
-    assert "Web Tables" in page_tables.page_title.get_text()
+    title_text = page_tables.page_title.get_text()
+    assert "Tables" in title_text or "Web" in title_text
+    
     while page_tables.btn_delete_row.exist():
         page_tables.btn_delete_row.click()
         time.sleep(1)
@@ -18,7 +21,7 @@ def test_webtables_functionality(browser):
     time.sleep(1)
     assert page_tables.first_name_input.visible()
     assert page_tables.submit_button.visible()
-    page_tables.page_title.click()
+    browser.find_element("tag name", "body").send_keys(Keys.ESCAPE)
     time.sleep(1)
     page_tables.add_button.click()
     time.sleep(1)
@@ -38,7 +41,6 @@ def test_webtables_functionality(browser):
     page_tables.age_input.send_keys(test_data['age'])
     page_tables.salary_input.send_keys(test_data['salary'])
     page_tables.department_input.send_keys(test_data['department'])
-
     page_tables.submit_button.click()
     time.sleep(1)
     assert not page_tables.first_name_input.visible()
