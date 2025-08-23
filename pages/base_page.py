@@ -70,5 +70,5 @@ class BasePage:
         try:
             return self.driver.switch_to.alert
         except Exception as ex:
-            logging.error(f"Error switching to alert: {ex}")
-            return None
+            logging.log(1, ex)
+            return False
