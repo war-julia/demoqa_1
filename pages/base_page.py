@@ -1,40 +1,74 @@
 from selenium.webdriver.common.by import By
 import logging
+import time
+
 class BasePage:
     def __init__(self, driver, base_url):
         self.driver = driver
         self.base_url = base_url
 
     def visit(self):
-        return self.driver.get(self.base_url)
+        try:
+            return self.driver.get(self.base_url)
+        except Exception as e:
+            logging.error(f"Error visiting {self.base_url}: {e}")
+            raise
 
     def find_element(self, locator):
-        return self.driver.find_element(By.CSS_SELECTOR, locator)
+        try:
+            return self.driver.find_element(By.CSS_SELECTOR, locator)
+        except Exception as e:
+            logging.error(f"Error finding element {locator}: {e}")
+            raise
 
     def get_url(self):
-        return self.driver.current_url
+        try:
+            return self.driver.current_url
+        except Exception as e:
+            logging.error(f"Error getting current URL: {e}")
+            return ""
 
     def equal_url(self):
-        if self.get_url() == self.base_url:
-            return True
-        else:
+        try:
+            if self.get_url() == self.base_url:
+                return True
+            else:
+                return False
+        except Exception as e:
+            logging.error(f"Error comparing URLs: {e}")
             return False
 
     def back(self):
-        self.driver.back()
+        try:
+            self.driver.back()
+        except Exception as e:
+            logging.error(f"Error going back: {e}")
+            raise
 
     def forward(self):
-        self.driver.forward()
+        try:
+            self.driver.forward()
+        except Exception as e:
+            logging.error(f"Error going forward: {e}")
+            raise
 
     def refresh(self):
-        self.driver.refresh()
+        try:
+            self.driver.refresh()
+        except Exception as e:
+            logging.error(f"Error refreshing page: {e}")
+            raise
 
     def get_title(self):
-        return self.driver.title
+        try:
+            return self.driver.title
+        except Exception as e:
+            logging.error(f"Error getting title: {e}")
+            return ""
 
     def alert(self):
         try:
             return self.driver.switch_to.alert
         except Exception as ex:
-            logging.log(1, ex)
-        False
+            logging.error(f"Error switching to alert: {ex}")
+            return None
