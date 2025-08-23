@@ -59,18 +59,25 @@ def test_webtables_functionality(browser):
     page_tables.department_input.send_keys(test_data['department'])
     
     page_tables.submit_button.click()
-    time.sleep(5)
+    time.sleep(3)
     
-    try:
-        page_tables.first_name_input.visible()
-        dialog_still_open = True
-    except Exception:
-        dialog_still_open = False
+    # Проверяем, закрылся ли диалог
+    dialog_closed = False
+    for _ in range(5):
+        try:
+            page_tables.first_name_input.visible()
+            time.sleep(1)
+        except:
+            dialog_closed = True
+            break
     
-    if dialog_still_open:
+    # Если диалог не закрылся, принудительно закрываем
+    if not dialog_closed:
         browser.find_element(By.TAG_NAME, "body").send_keys(Keys.ESCAPE)
-        time.sleep(1)
+        time.sleep(2)
     
+    # Проверяем, что запись добавилась
+    time.sleep(2)
     has_data = not page_tables.no_data_exist()
     assert has_data, "Запись не добавилась в таблицу"
     

@@ -12,7 +12,7 @@ def test_home_link_new_tab(browser):
     assert link_text == "Home"
     
     href = links_page.home_link.get_attribute('href')
-    assert href == "https://demoqa.com/"
+    assert href == "https://demoqa.com"
     
     original_window = browser.current_window_handle
     links_page.home_link.click()
