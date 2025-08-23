@@ -1,8 +1,8 @@
 import time
 
-from pages.alerts import Alerts:
+from pages.alerts import Alerts
 
-def test_allert(browser):
+def test_alert(browser):
     alert_page = Alerts(browser)
     alert_page.visit()
     assert not alert_page.alert()
@@ -24,7 +24,7 @@ def test_confirm(browser):
     alert_page.confirmButton.click()
     time.sleep(2)
     alert_page.alert().dismiss()
-    assert alert_page.confirmResult.get_text() == "You celected Cancel"
+    assert alert_page.confirmResult.get_text() == "You selected Cancel"
 
 def test_prompt(browser):
     alert_page = Alerts(browser)

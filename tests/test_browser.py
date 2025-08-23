@@ -1,4 +1,4 @@
-import from pages.browser_tab import BrowserTab
+from pages.browser_tab import BrowserTab
 import time
 def test_browser_tab(browser):
     page_browser = BrowserTab(browser)
