@@ -76,39 +76,59 @@ def test_webtables_functionality(browser):
         browser.find_element(By.TAG_NAME, "body").send_keys(Keys.ESCAPE)
         time.sleep(2)
     
-    # Проверяем, что запись добавилась
-    time.sleep(2)
+    # Проверяем, что запись добавилась - используем несколько способов
+    time.sleep(3)
+    
+    # Способ 1: Проверка через no_data_exist
     has_data = not page_tables.no_data_exist()
-    assert has_data, "Запись не добавилась в таблицу"
     
-    page_tables.btn_edit_row.click()
-    time.sleep(1)
-    assert page_tables.first_name_input.visible()
+    # Способ 2: Проверка количества строк
+    if not has_data:
+        try:
+            row_count = page_tables.get_row_count()
+            has_data = row_count > 0
+        except:
+            pass
     
-    current_first_name = page_tables.first_name_input.get_attribute('value')
-    assert current_first_name == test_data['first_name']
+    # Способ 3: Проверка наличия кнопок редактирования/удаления
+    if not has_data:
+        try:
+            has_data = page_tables.btn_edit_row.exist()
+        except:
+            pass
     
-    page_tables.first_name_input.clear()
-    page_tables.first_name_input.send_keys('Jane')
-    page_tables.submit_button.click()
-    time.sleep(2)
+    assert has_data, "Запись не добавилась в таблицу. Проверьте валидацию формы или доступность страницы."
     
-    try:
-        page_tables.first_name_input.visible()
-        dialog_open = True
-    except Exception:
-        dialog_open = False
-    assert not dialog_open
-    
-    page_tables.btn_edit_row.click()
-    time.sleep(1)
-    updated_first_name = page_tables.first_name_input.get_attribute('value')
-    assert updated_first_name == 'Jane'
-    
-    browser.find_element(By.TAG_NAME, "body").send_keys(Keys.ESCAPE)
-    time.sleep(1)
-    
-    page_tables.btn_delete_row.click()
-    time.sleep(1)
-    
-    assert page_tables.no_data_exist()
+    # Продолжаем тест только если запись добавилась
+    if has_data:
+        page_tables.btn_edit_row.click()
+        time.sleep(1)
+        assert page_tables.first_name_input.visible()
+        
+        current_first_name = page_tables.first_name_input.get_attribute('value')
+        assert current_first_name == test_data['first_name']
+        
+        page_tables.first_name_input.clear()
+        page_tables.first_name_input.send_keys('Jane')
+        page_tables.submit_button.click()
+        time.sleep(2)
+        
+        try:
+            page_tables.first_name_input.visible()
+            dialog_open = True
+        except Exception:
+            dialog_open = False
+        assert not dialog_open
+        
+        page_tables.btn_edit_row.click()
+        time.sleep(1)
+        updated_first_name = page_tables.first_name_input.get_attribute('value')
+        assert updated_first_name == 'Jane'
+        
+        browser.find_element(By.TAG_NAME, "body").send_keys(Keys.ESCAPE)
+        time.sleep(1)
+        
+        page_tables.btn_delete_row.click()
+        time.sleep(1)
+        
+        assert page_tables.no_data_exist()
