@@ -39,11 +39,10 @@ class Tables(BasePage):
         self.back_to_elements = WebElement(driver, ".btn.btn-light")
         
         # Элементы пагинации
-        self.rows_per_page_select = WebElement(driver, "select[aria-label='rows per page']")
+        self.rows_per_page_select = WebElement(driver, "select")
         self.next_button = WebElement(driver, "button[aria-label='Next page']")
         self.previous_button = WebElement(driver, "button[aria-label='Previous page']")
         self.page_info = WebElement(driver, ".pagination-info")
-        self.current_page = WebElement(driver, ".pagination-info")
     
     def no_data_exist(self):
         """Проверяет, есть ли данные в таблице"""
