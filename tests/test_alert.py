@@ -28,8 +28,10 @@ def test_confirm(browser):
 
 def test_prompt(browser):
     alert_page = Alerts(browser)
+    name = "Artem"
     alert_page.visit()
     alert_page.promptButton.click()
     time.sleep(2)
+    alert_page.alert().send_keys(name)
     alert_page.alert().accept()
-    assert alert_page.promptResult.get_text() == "You entered Artem"
+    assert alert_page.promptResult.get_text() == f"You entered {name}"

@@ -59,13 +59,12 @@ def test_webtables_functionality(browser):
     page_tables.department_input.send_keys(test_data['department'])
     
     page_tables.submit_button.click()
-    time.sleep(3)
-    time.sleep(2)
+    time.sleep(5)
     
     try:
         page_tables.first_name_input.visible()
         dialog_still_open = True
-    except:
+    except Exception:
         dialog_still_open = False
     
     if dialog_still_open:
@@ -90,7 +89,7 @@ def test_webtables_functionality(browser):
     try:
         page_tables.first_name_input.visible()
         dialog_open = True
-    except:
+    except Exception:
         dialog_open = False
     assert not dialog_open
     
