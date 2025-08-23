@@ -25,6 +25,14 @@ class Tables(BasePage):
         self.department_input = WebElement(driver, "#department, input[name='department'], input[placeholder*='Department']")
         self.submit_button = WebElement(driver, "#submit, button[type='submit'], .submit-button")
         
+        # Заголовки столбцов для сортировки
+        self.first_name_header = WebElement(driver, ".rt-th[aria-label='First Name']")
+        self.last_name_header = WebElement(driver, ".rt-th[aria-label='Last Name']")
+        self.age_header = WebElement(driver, ".rt-th[aria-label='Age']")
+        self.email_header = WebElement(driver, ".rt-th[aria-label='Email']")
+        self.salary_header = WebElement(driver, ".rt-th[aria-label='Salary']")
+        self.department_header = WebElement(driver, ".rt-th[aria-label='Department']")
+        
         # Элементы таблицы
         self.table_rows = WebElement(driver, ".rt-tbody .rt-tr, tbody tr, .table-row")
         self.table_data = WebElement(driver, ".rt-td, td, .table-cell")
