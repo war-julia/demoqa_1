@@ -140,9 +140,9 @@ def test_pagination_functionality(browser):
     assert next_button.get_attribute('disabled') is None
     next_button.click()
     time.sleep(1)
-    current_page = page_tables.current_page.get_text()
-    assert "2" in current_page
+    page_info_after_next = page_tables.page_info.get_text()
+    assert "2" in page_info_after_next
     previous_button.click()
     time.sleep(1)
-    current_page = page_tables.current_page.get_text()
-    assert "1" in current_page
+    page_info_after_previous = page_tables.page_info.get_text()
+    assert "1" in page_info_after_previous

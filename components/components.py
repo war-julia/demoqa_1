@@ -3,6 +3,7 @@ from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
 import time
 
 class WebElement:
@@ -84,6 +85,11 @@ class WebElement:
         self.driver.execute_script(
             "arguments[0].scrollIntoView(true);", self.find_element()
         )
+
+    def select_by_value(self, value: str):
+        """Выбор значения в селекторе по значению"""
+        select = Select(self.find_element())
+        select.select_by_value(value)
 
     def get_by_type(self):
         if self.locator_type == "id":
