@@ -54,8 +54,14 @@ def test_webtables_functionality(browser):
     page_tables.submit_button.click()
     time.sleep(2)
     
-    assert not page_tables.first_name_input.visible()
-    assert not page_tables.no_data_exist()
+    try:
+        page_tables.first_name_input.visible()
+        dialog_still_open = True
+    except:
+        dialog_still_open = False
+    
+    assert not dialog_still_open
+    assert page_tables.no_data_exist() == False
     
     page_tables.btn_edit_row.click()
     time.sleep(2)
@@ -70,7 +76,23 @@ def test_webtables_functionality(browser):
     
     page_tables.submit_button.click()
     time.sleep(2)
-    assert not page_tables.first_name_input.visible()
+    
+    try:
+        page_tables.first_name_input.visible()
+        dialog_still_open = True
+    except:
+        dialog_still_open = False
+    
+    assert not dialog_still_open
+    
+    page_tables.btn_edit_row.click()
+    time.sleep(2)
+    
+    updated_first_name = page_tables.first_name_input.get_attribute('value')
+    assert updated_first_name == 'Jane'
+    
+    browser.find_element("tag name", "body").send_keys(Keys.ESCAPE)
+    time.sleep(2)
     
     page_tables.btn_delete_row.click()
     time.sleep(2)
