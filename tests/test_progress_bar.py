@@ -11,3 +11,4 @@ def test_progress_bar(browser):
         if page.bar.get_dom_attribute("aria-valuenow") == "51"
             page.button.click()
             break
+    time.sleep(2)
