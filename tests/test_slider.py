@@ -3,6 +3,6 @@
 #     slider.visit()
 #     assert slider.slider.exist()
 #     assert slider.inp.exist()
-#     slider.inp.send_keys("50")
-#     sleder.slider.send_keys("50")
+#     while not slider.inp.get_dom_attribute('value') == '50':
+#          slider.slider.send_keys(Keys.ARROW_RIGHT)
 #     assert slider.ino.get_dom_attribute("value") == "50"
